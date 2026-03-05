@@ -44,6 +44,7 @@ ios/Pods/
 
 # Env / Secrets
 .env
+google-services.json
 
 # Symbolication related
 app.*.symbols
