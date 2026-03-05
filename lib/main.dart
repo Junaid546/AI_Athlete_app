@@ -10,6 +10,7 @@ import 'screens/main_navigation_screen.dart';
 import 'providers/user_profile_provider_firebase.dart';
 import 'providers/progress_provider.dart';
 import 'providers/theme_provider.dart';
+import 'firebase_options.dart';
 
 
 // Note: Lottie animations are optimized with frame rate control for better performance
@@ -20,10 +21,12 @@ void main() async {
   // Initialize SharedPreferences
   final prefs = await SharedPreferences.getInstance();
 
-  // Initialize Firebase (optional for development)
+  // Initialize Firebase
   debugPrint('Main: Starting Firebase initialization');
   try {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     debugPrint('Firebase initialized successfully');
   } catch (e) {
     debugPrint('Firebase initialization failed: $e');

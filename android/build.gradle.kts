@@ -11,12 +11,12 @@ allprojects {
     }
 }
 
-val newBuildDir: Directory = rootProject.layout.buildDirectory.get()
-rootProject.layout.buildDirectory.value(newBuildDir)
+// Align Android build outputs with Flutter's expected root-level /build directory
+val sharedBuildDir = rootProject.layout.projectDirectory.dir("../build")
+rootProject.layout.buildDirectory.set(sharedBuildDir)
 
 subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
+    layout.buildDirectory.set(sharedBuildDir.dir(name))
 }
 subprojects {
     project.evaluationDependsOn(":app")
