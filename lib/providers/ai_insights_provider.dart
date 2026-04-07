@@ -1,18 +1,17 @@
 import 'dart:developer' as developer;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/ai_insight.dart';
 import '../models/user_profile.dart';
 import '../models/workout_session.dart';
-
-const String apiKey = 'AIzaSyCkvR6bx8qdF0011w00QaU9h0WNFm02Rxs';
 
 class AiInsightsNotifier extends StateNotifier<List<AiInsight>> {
   AiInsightsNotifier() : super([]);
 
   final GenerativeModel _model = GenerativeModel(
     model: 'gemini-1.5-flash',
-    apiKey: apiKey,
+    apiKey: dotenv.env['GEMINI_API_KEY'] ?? '',
   );
 
   // Generate insights based on user data

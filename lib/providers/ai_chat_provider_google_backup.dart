@@ -1,13 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:async';
 import '../models/ai_message.dart';
 import '../models/ai_conversation.dart';
 import '../models/user_profile.dart';
 import '../models/workout_session.dart';
-
-const String apiKey = 'AIzaSyC2KO0pphHCN65ieV1FYrzZZpA6NYTni2w';
 
 class AiChatNotifier extends StateNotifier<List<AiConversation>> {
   GenerativeModel? _model;
@@ -20,6 +19,7 @@ class AiChatNotifier extends StateNotifier<List<AiConversation>> {
 
   void _initializeModel() {
     try {
+      final apiKey = dotenv.env['GEMINI_API_KEY_CHAT'] ?? '';
       if (apiKey.isEmpty || apiKey == 'YOUR_API_KEY_HERE') {
         throw Exception('API key is not configured properly');
       }

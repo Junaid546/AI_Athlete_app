@@ -88,7 +88,7 @@ class CoachSection extends StatelessWidget {
                     CircleAvatar(
                       radius: 30,
                       backgroundImage: CachedNetworkImageProvider(coach.avatarUrl),
-                      onBackgroundImageError: (_, __) => const Icon(Icons.person),
+                      onBackgroundImageError: (_, _) => const Icon(Icons.person),
                     ),
                     const SizedBox(width: 16),
 
@@ -386,7 +386,7 @@ class _AthleteRosterSectionState extends State<AthleteRosterSection> {
               CircleAvatar(
                 radius: 20,
                 backgroundImage: CachedNetworkImageProvider(athlete.avatarUrl),
-                onBackgroundImageError: (_, __) => Text(athlete.name[0]),
+                onBackgroundImageError: (_, _) => Text(athlete.name[0]),
               ),
               const SizedBox(width: 12),
               Expanded(
